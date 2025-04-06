@@ -6,6 +6,9 @@ import Loading from './components/Loading';
 import axios from 'axios';
 import './styles/index.css';
 
+// Set up axios default baseURL from environment variables
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 function App() {
   const [selectedMood, setSelectedMood] = useState('');
   const [songs, setSongs] = useState([]);

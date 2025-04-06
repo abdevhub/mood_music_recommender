@@ -10,4 +10,13 @@ services:
       - key: SPOTIFY_CLIENT_SECRET
         fromSecret: SPOTIFY_CLIENT_SECRET
       - key: PORT
-        value: '5000' 
+        value: '5000'
+
+  - type: static
+    name: mood-music-app
+    buildCommand: 'cd client && npm install && npm run build'
+    publishDir: 'client/build'
+    envVars:
+      - key: REACT_APP_API_URL
+        sync: false
+        value: 'https://mood-music-api.onrender.com' 
