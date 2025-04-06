@@ -4,14 +4,7 @@ const recommendRoute = require("./routes/recommend");
 require("dotenv").config();
 
 const app = express();
-
-// Configure CORS to allow requests from your frontend domain
-app.use(cors({
-  origin: ['https://mood-music-recommender.vercel.app', 'http://localhost:3000'],
-  methods: ['GET', 'POST'],
-  credentials: true
-}));
-
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/recommend", recommendRoute);
