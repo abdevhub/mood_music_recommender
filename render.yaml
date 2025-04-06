@@ -14,7 +14,7 @@ services:
 
   - type: static
     name: mood-music-app
-    buildCommand: 'cd client && chmod +x build.sh && ./build.sh'
+    buildCommand: 'cd client && npm install && npm run build'
     publishDir: 'client/build'
     envVars:
       - key: REACT_APP_API_URL
