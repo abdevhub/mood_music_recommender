@@ -1,4 +1,5 @@
 #!/bin/bash
 npm install
 export CI=false
-NODE_OPTIONS=--openssl-legacy-provider npx react-scripts build 
+export NODE_OPTIONS=--openssl-legacy-provider
+./node_modules/.bin/react-scripts build 
