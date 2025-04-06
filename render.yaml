@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: mood-music-api
+    env: node
+    buildCommand: 'npm install'
+    startCommand: 'node server/app.js'
+    envVars:
+      - key: 4a6a111bae364a3d87f28cbada3b0e77
+      fromSecret: 4a6a111bae364a3d87f28cbada3b0e77
+      - key: cd18d91112044ddca6709f771750c0f9
+        fromSecret: cd18d91112044ddca6709f771750c0f9
+      - key: PORT
+        value: '5000' 
