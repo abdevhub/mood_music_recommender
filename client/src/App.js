@@ -6,8 +6,8 @@ import Loading from './components/Loading';
 import axios from 'axios';
 import './styles/index.css';
 
-// Backend API URL - Change this to your Render deployed backend URL
-const API_URL = 'https://mood-music-api-mvlp.onrender.com';
+// Backend API URL - Use environment variable or fallback to hardcoded URL
+const API_URL = process.env.REACT_APP_API_URL || 'https://mood-music-api-mvlp.onrender.com';
 
 function App() {
   const [selectedMood, setSelectedMood] = useState('');
@@ -24,6 +24,8 @@ function App() {
     setPlaylistInfo(null);
 
     try {
+      console.log(`Fetching recommendations from: ${API_URL}/api/recommend`);
+      
       const response = await axios.post(`${API_URL}/api/recommend`, { 
         mood, 
         limit,
@@ -45,7 +47,7 @@ function App() {
       }
     } catch (err) {
       console.error('Error fetching songs:', err);
-      setError('Failed to fetch songs. Please try again.');
+      setError(`Failed to fetch songs: ${err.message}. Please try again.`);
       setLoading(false);
     }
   };
