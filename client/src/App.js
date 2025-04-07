@@ -6,6 +6,9 @@ import Loading from './components/Loading';
 import axios from 'axios';
 import './styles/index.css';
 
+// Use the deployed backend URL
+const API_URL = 'https://mood-music-api.onrender.com'; // Replace with your actual Render backend URL
+
 function App() {
   const [selectedMood, setSelectedMood] = useState('');
   const [songs, setSongs] = useState([]);
@@ -21,7 +24,7 @@ function App() {
     setPlaylistInfo(null);
 
     try {
-      const response = await axios.post('/api/recommend', { 
+      const response = await axios.post(`${API_URL}/api/recommend`, { 
         mood, 
         limit,
         refresh: shouldRefresh 
@@ -32,6 +35,7 @@ function App() {
         name: response.data.playlist_name,
         url: response.data.playlist_url,
         mood: response.data.mood,
+        matchedMood: response.data.matchedMood,
         refreshed: response.data.refreshed
       });
       setLoading(false);
