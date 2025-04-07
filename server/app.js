@@ -5,32 +5,29 @@ require("dotenv").config();
 
 const app = express();
 
-// Updated CORS configuration to allow requests from the frontend
+// Configure CORS to allow requests from the client
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'https://mood-music-recommender.onrender.com',  // Replace with your frontend URL when deployed
-    'https://mood-music-app.onrender.com'           // Alternative frontend URL
-  ],
+  origin: ['http://localhost:3000', 'https://mood-music-recommender.netlify.app'],
   methods: ['GET', 'POST'],
   credentials: true
 }));
 
 app.use(express.json());
 
+// API routes
 app.use("/api/recommend", recommendRoute);
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'Server is running' });
+});
+
 app.get('/callback', async (req, res) => {
-    const code = req.query.code;
-  
-    // You now have the authorization code, exchange it for an access token
-    // Send this code to a function that gets the access token
-    res.send('Authorization code received: ' + code);
-  });
-  
-// Add a health check endpoint
-app.get('/', (req, res) => {
-  res.send('Mood Music Recommendation API is running');
+  const code = req.query.code;
+
+  // You now have the authorization code, exchange it for an access token
+  // Send this code to a function that gets the access token
+  res.send('Authorization code received: ' + code);
 });
 
 const PORT = process.env.PORT || 5000;

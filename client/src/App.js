@@ -6,8 +6,8 @@ import Loading from './components/Loading';
 import axios from 'axios';
 import './styles/index.css';
 
-// Use the deployed backend URL
-const API_URL = 'https://mood-music-api.onrender.com'; // Replace with your actual Render backend URL
+// Backend API URL - Change this to your Render deployed backend URL
+const API_URL = 'https://mood-music-api-mvlp.onrender.com';
 
 function App() {
   const [selectedMood, setSelectedMood] = useState('');
